@@ -11,10 +11,14 @@ import au.com.prosodysystems.springscala.service.MyService
 object SpringApplication extends App {
 	private val log = Logger(getClass)
 	val ctx = new AnnotationConfigApplicationContext()
- 
-  	ctx.register(classOf[ApplicationConfiguration])
+	ctx.register(classOf[ApplicationConfiguration])
 	ctx.scan("au.com.prosodysystems")
 	ctx.refresh
-	val myService = ctx.getBean(classOf[MyService])
-	myService.doStuff;
+	
+	// Scope the myService object so it's discarded afterwards and doesn't exist for the life
+	// of the application
+	{
+		val myService = ctx.getBean(classOf[MyService])
+		myService.doStuff;
+	}
 }
