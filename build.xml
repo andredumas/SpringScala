@@ -17,7 +17,11 @@
 	            resource="org/apache/ivy/ant/antlib.xml"
 				classpathref="build.lib.path.id"/>
     
-    <target name="retrive" description="Retrieve dependencies with ivy">
+	
+	<target name="dependencies.cleancache">
+		<ivy:cleancache />
+	</target>
+    <target name="dependencies.retrieve" description="Retrieve dependencies with ivy">
         <ivy:retrieve />
     </target>
 </project>
