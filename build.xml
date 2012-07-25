@@ -1,0 +1,23 @@
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="SpringScala">
+    <property name="lib.dir" value="lib" />
+    <property name="build.lib.dir" value="${lib.dir}/build" />
+	
+	<path id="lib.path.id">
+	        <fileset dir="${lib.dir}" />
+	</path>
+	<path id="build.lib.path.id">
+		<fileset dir="${build.lib.dir}"/>
+	</path>
+	<path id="run.lib.path.id">
+	        <path refid="lib.path.id" />
+	        <path location="${build.dir}" />
+	</path>	
+	
+	<taskdef uri="antlib:org.apache.ivy.ant"
+	            resource="org/apache/ivy/ant/antlib.xml"
+				classpathref="build.lib.path.id"/>
+    
+    <target name="retrive" description="Retrieve dependencies with ivy">
+        <ivy:retrieve />
+    </target>
+</project>
