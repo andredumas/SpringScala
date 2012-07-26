@@ -17,11 +17,6 @@
 	            resource="org/apache/ivy/ant/antlib.xml"
 				classpathref="build.lib.path.id"/>
     
-	<target name="echo">
-		<ivy:configure />
-		<echo>${ivy.retrieve.pattern}</echo>
-	</target>
-	
 	<target name="dependencies.cleancache">
 		<ivy:cleancache />
 	</target>
