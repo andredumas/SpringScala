@@ -1,5 +1,11 @@
 <project xmlns:ivy="antlib:org.apache.ivy.ant" name="SpringScala">
+	<!-- check for environment -->
+	<property environment="env"/>
+	<fail unless="env.SCALA_HOME" message="SCALA_HOME is not defined"/>
+	<fail unless="env.JAVA_HOME" message="JAVA_HOME is not defined"/>
+	
     <property name="lib.dir" value="lib" />
+    <property name="src.dir" value="src" />
     <property name="build.lib.dir" value="${lib.dir}/build" />
 	
 	<path id="lib.path.id">
@@ -12,6 +18,14 @@
 	        <path refid="lib.path.id" />
 	        <path location="${build.dir}" />
 	</path>	
+
+	<path id="scala.classpath.path.id">
+		<path location="${env.SCALA_HOME}/lib/scala-library.jar" />
+		<path location="${env.SCALA_HOME}/lib/scala-compiler.jar" />
+	</path>
+	
+	<taskdef resource="scala/tools/ant/antlib.xml" 
+			classpathref="scala.classpath.path.id"/>
 	
 	<taskdef uri="antlib:org.apache.ivy.ant"
 	            resource="org/apache/ivy/ant/antlib.xml"
@@ -20,7 +34,12 @@
 	<target name="dependencies.cleancache">
 		<ivy:cleancache />
 	</target>
+	
     <target name="dependencies.retrieve" description="Retrieve dependencies with ivy">
         <ivy:retrieve sync="true" pattern="${lib.dir}/managed/[conf]/[artifact]-[revision](-[classifier]).[ext]" />
     </target>
+	
+	<target name="compile">
+		<scalac srcdir="${src.dir}"/>
+	</target>
 </project>
