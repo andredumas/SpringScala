@@ -17,11 +17,15 @@
 	            resource="org/apache/ivy/ant/antlib.xml"
 				classpathref="build.lib.path.id"/>
     
+	<target name="echo">
+		<ivy:configure />
+		<echo>${ivy.retrieve.pattern}</echo>
+	</target>
 	
 	<target name="dependencies.cleancache">
 		<ivy:cleancache />
 	</target>
     <target name="dependencies.retrieve" description="Retrieve dependencies with ivy">
-        <ivy:retrieve />
+        <ivy:retrieve sync="true" pattern="${lib.dir}/managed/[conf]/[artifact]-[revision](-[classifier]).[ext]" />
     </target>
 </project>

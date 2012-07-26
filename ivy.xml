@@ -3,7 +3,7 @@
     
 	<configurations defaultconfmapping="default">
         <conf name="default"/>
-        <conf name="unitTest" description="Unit testing dependencies"/>
+        <conf name="test" description="Unit testing dependencies"/>
     </configurations>
         
     <dependencies>
@@ -12,12 +12,10 @@
         <dependency org="org.springframework" name="spring-context" rev="3.2.0.M1" />
         <dependency org="org.springframework" name="spring-core" rev="3.2.0.M1" />
         <dependency org="org.springframework" name="spring-expression" rev="3.2.0.M1" />
+        <dependency org="cglib" name="cglib" rev="2.2.2"/>
     </dependencies>
             
 <!-- 
-    <dependencies>
-        <dependency org="commons-logging" name="commons-logging" rev="1.1.1"/>
-        <dependency org="org.springframework" name="spring-web" rev="3.2.0.M1" />
-    </dependencies>
+		<dependency org="org.springframework" name="spring-web" rev="3.2.0.M1" />
  -->        
 </ivy-module>
